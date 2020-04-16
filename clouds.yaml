@@ -1,0 +1,8 @@
+clouds:
+ timati:
+  region_name: RegionOne
+  auth:
+   username: 't.maymekov'
+   password: '2Ge5SKcprEu2'
+   project_name: 'challenge'
+   auth_url: 'https://cloud.ispras.ru:5000/v2.0' 
