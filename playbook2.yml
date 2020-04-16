@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - os_server_info:
+       cloud: timati
+    register: result
+  - debug:
+     msg: "{{ result.openstack_servers }}"
