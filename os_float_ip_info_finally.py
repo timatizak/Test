@@ -21,7 +21,7 @@ def main():
   sdk, cloud = openstack_cloud_from_module(module)
   try:
     servers = cloud.search_servers(detailed=module.params['detailed'], filters=module.params['filters'], all_projects=module.params['all_projects'])
-    my_task=[{'private_ip':cloud.get_server_private_ip(server),'public_ip':cloud.get_server_public_ip(server), 'server_id':cloud.get_server_id(server)} for server in serve>
+    my_task=[{'private_ip':cloud.get_server_private_ip(server),'public_ip':cloud.get_server_public_ip(server), 'server_id':cloud.get_server_id(server)} for server in servers]
 
     module.exit_json(my_task=my_task)
   except sdk.OpenStackCloudException as e:
