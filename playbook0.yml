@@ -1,0 +1,6 @@
+---
+- hosts: linux1
+  tasks:
+   - copy:
+       dest: /home/timur2/hello_world
+       content: "I've done!\n"
