@@ -1,0 +1,51 @@
+ Часть 1:
+ 1) Создал виртувльную машину с помощью менеджера виртуальных машин:
+ 2) Запустил её и выполнил команду ip a, адрес вм: 192.168.122.218/24
+ 3) На хоcте команда ping 192.168.122.218 выполнилась
+ 4) Установил ansible
+ 5) Сгенерировал ssh-ключи: ssh-keygen
+ 6) Cкопировал открытый ключ в вм в файл cat ~/.ssh/id_rsa.pub | ssh root@ip-адрес-сервера 'cat >> ~/.ssh/authorized_keys'
+ 7) Проверил ssh-подключение: ssh timur2@192.168.122.218 
+ 8) Дальше выполнял команды:
+      - ansible --version
+      - sudo nano /etc/ansbile/hosts:
+        - в этом файле прописал ip и название вм -linux1 ansible_host=192.168.122.218 ansible_user=timur2
+      - cd ansible1
+      - sudo nano playbook0.yml
+      - ansible-palybook playbook0.yml
+       
+ Часть 2:
+ 1) Создание вм в облке:
+    В cloud.ispras.ru: 
+    Compute -> Images -> Launch Instance: 
+      - заполнил Details
+      - заполнил Access&Security:
+        - key pair: 
+          - key pair name: key1
+          - на хосте выполнил команду: ssh-keygen -t rsa -f cloud.key:
+            - сгенерировало пару ключей: private(cloud.key), public key(cloud.key.pub)
+          - public key:
+            - скопировал сюда содержимое cloud.key.pub
+          - import key pair
+          - launch
+    Instances -> Associate Floating IP:
+      - заполнил IP Address
+      - на хосте выполнил команду: ssh -i cloud.key ubuntu@83.149.198.140
+ 2) Написание сценария Ansible, который получает и выводит факты о виртуальных машинах в облаке:
+      - clouds.ipsras.ru -> Access&Security -> Download OpenStack RC File
+      - sudo nano clouds.yaml
+      - cd ansible1
+      - sudo nano playbook2.yml
+      - ansible-playbook playbook2.yml
+ 3) Написание модуля Ansible os_float_ip_info:
+      - ansible --version
+      - cd .local/lib/python3.7/site-packages/ansible/modules/cloud/openstack
+      - sudo nano os_float_ip_info2.py
+      - cd
+      - cd ansible1
+      - sudo nano playbook1.yml
+      - ansible-playbook plaubook1.yml
+     
+      
+          
+     
