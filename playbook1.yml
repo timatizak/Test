@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - os_float_ip_info2:
+     cloud: timati
+    register: result
+  - debug:
+     msg: "{{ result }}"
+    
